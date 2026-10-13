@@ -6,3 +6,5 @@ Project ini merupakan bagian dari project saya untuk memenuhi tugas akhir Dicodi
 Untuk run streamlit dapat menggunakan ini:
 
 streamlit run dashboard.py
+
+Note: sangat diperlukan data requirements.txt dengan penulisan yang baik agar dashboard streamlit ter-load secara sempurna tanpa error
