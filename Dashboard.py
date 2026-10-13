@@ -14,7 +14,7 @@ st.markdown("Dashboard interaktif sederhana untuk menyajikan hasil analisis data
 @st.cache_data
 def load_data():
     # Membaca data dari file yang tersedia
-    df = pd.read_csv('/content/hour_day.csv')
+    df = pd.read_csv('hour_day.csv')
     df['dteday'] = pd.to_datetime(df['dteday'])
     return df
 
