@@ -3,14 +3,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Set page config
 st.set_page_config(page_title="Bike Sharing Dashboard", layout="wide")
 
-# Title
-st.title("📊 Dashboard Analisis Penyewaan Sepeda")
+st.title("Dashboard Analisis Penyewaan Sepeda")
 st.markdown("Dashboard interaktif sederhana untuk menyajikan hasil analisis data penyewaan sepeda.")
 
-# Load Data
 @st.cache_data
 def load_data():
     df = pd.read_csv('hour_day.csv')
