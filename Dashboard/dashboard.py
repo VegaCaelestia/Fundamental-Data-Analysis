@@ -6,13 +6,6 @@ import streamlit as st
 
 df = pd.read_csv('Dashboard/main_df.csv')
 
-# Menentukan fungsi helper yang adaptif dengan nama kolom yang ada di dataset
-def get_column_name(df, options):
-    for opt in options:
-        if opt in df.columns:
-            return opt
-    return None
-
 def create_season_rentals_df(df):
     df_copy = df.copy()
     
@@ -23,12 +16,11 @@ def create_season_rentals_df(df):
     if not season_col or not cnt_col:
         raise KeyError(f"Kolom untuk season/cnt tidak ditemukan. Kolom yang ada: {list(df_copy.columns)}")
     
-    # Jika datanya sudah berupa label teks (seperti 'spring', 'summer') kita cukup merapikan huruf kapitalnya
-    if df_copy[season_col].dtype == 'object':
-        df_copy['season_label'] = df_copy[season_col].str.capitalize()
-    else:
-        season_mapping = {1: 'Spring', 2: 'Summer', 3: 'Fall', 4: 'Winter'}
-        df_copy['season_label'] = df_copy[season_col].map(season_mapping)
+    # Paksa ubah ke numerik agar aman dari perbedaan format string/float di CSV
+    df_copy[season_col] = pd.to_numeric(df_copy[season_col], errors='coerce')
+    
+    season_mapping = {1: 'Spring', 2: 'Summer', 3: 'Fall', 4: 'Winter'}
+    df_copy['season_label'] = df_copy[season_col].map(season_mapping)
         
     season_df = df_copy.groupby('season_label')[cnt_col].mean().reset_index()
     season_df.rename(columns={cnt_col: 'avg_rentals'}, inplace=True)
@@ -44,16 +36,15 @@ def create_workingday_rentals_df(df):
     if not wd_col or not cnt_col:
         raise KeyError(f"Kolom untuk workingday/cnt tidak ditemukan. Kolom yang ada: {list(df_copy.columns)}")
     
-    if df_copy[wd_col].dtype == 'object':
-        df_copy['workingday_label'] = df_copy[wd_col].str.title()
-    else:
-        workingday_mapping = {0: 'Weekend/Holiday', 1: 'Working Day'}
-        df_copy['workingday_label'] = df_copy[wd_col].map(workingday_mapping)
+    # Paksa ubah ke numerik agar aman dari perbedaan format string/float di CSV
+    df_copy[wd_col] = pd.to_numeric(df_copy[wd_col], errors='coerce')
+    
+    workingday_mapping = {0: 'Weekend/Holiday', 1: 'Working Day'}
+    df_copy['workingday_label'] = df_copy[wd_col].map(workingday_mapping)
         
     workingday_df = df_copy.groupby('workingday_label')[cnt_col].mean().reset_index()
     workingday_df.rename(columns={cnt_col: 'avg_rentals'}, inplace=True)
     return workingday_df
-
 # Memproses data menggunakan helper function di atas
 season_rentals = create_season_rentals_df(df)
 workingday_rentals = create_workingday_rentals_df(df)
