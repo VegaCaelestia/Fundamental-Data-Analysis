@@ -16,20 +16,11 @@ def load_data():
     df['dteday'] = pd.to_datetime(df['dteday'])
     return df
 
-try:
-    df = load_data()
-except Exception as e:
-    st.error(f"Gagal memuat data: {e}")
-    df = None
-
-if df is not None:
-
     st.sidebar.header("Filter Data")
     year_filter = st.sidebar.multiselect(
         "Pilih Tahun:",
         options=df['dteday'].dt.year.unique(),
         default=df['dteday'].dt.year.unique()
-    )
     
     filtered_df = df[df['dteday'].dt.year.isin(year_filter)]
     
@@ -40,8 +31,6 @@ if df is not None:
         st.metric("Total Hari Data", len(daily_df))
     with col2:
         st.metric("Rata-rata Penyewaan Harian", f"{daily_df['cnt_y'].mean():.2f}")
-
-    st.markdown("---")
 
     st.header("Hasil Analisis & Kesimpulan")
 
