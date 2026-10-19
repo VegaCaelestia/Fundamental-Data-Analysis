@@ -1,24 +1,24 @@
-
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 
-df = pd.read_csv('Dashboard/main_df.csv')
+# 1. Definisikan fungsi helper di bagian paling atas
+def get_column_name(df, options):
+    for opt in options:
+        if opt in df.columns:
+            return opt
+    return None
 
 def create_season_rentals_df(df):
     df_copy = df.copy()
-    
-    # Deteksi nama kolom yang sesuai
     season_col = get_column_name(df_copy, ['season_x', 'season_y', 'season'])
     cnt_col = get_column_name(df_copy, ['cnt_x', 'cnt_y', 'cnt'])
     
     if not season_col or not cnt_col:
         raise KeyError(f"Kolom untuk season/cnt tidak ditemukan. Kolom yang ada: {list(df_copy.columns)}")
     
-    # Paksa ubah ke numerik agar aman dari perbedaan format string/float di CSV
     df_copy[season_col] = pd.to_numeric(df_copy[season_col], errors='coerce')
-    
     season_mapping = {1: 'Spring', 2: 'Summer', 3: 'Fall', 4: 'Winter'}
     df_copy['season_label'] = df_copy[season_col].map(season_mapping)
         
@@ -28,24 +28,24 @@ def create_season_rentals_df(df):
 
 def create_workingday_rentals_df(df):
     df_copy = df.copy()
-    
-    # Deteksi nama kolom yang sesuai
     wd_col = get_column_name(df_copy, ['workingday_x', 'workingday_y', 'workingday'])
     cnt_col = get_column_name(df_copy, ['cnt_x', 'cnt_y', 'cnt'])
     
     if not wd_col or not cnt_col:
         raise KeyError(f"Kolom untuk workingday/cnt tidak ditemukan. Kolom yang ada: {list(df_copy.columns)}")
     
-    # Paksa ubah ke numerik agar aman dari perbedaan format string/float di CSV
     df_copy[wd_col] = pd.to_numeric(df_copy[wd_col], errors='coerce')
-    
     workingday_mapping = {0: 'Weekend/Holiday', 1: 'Working Day'}
     df_copy['workingday_label'] = df_copy[wd_col].map(workingday_mapping)
         
     workingday_df = df_copy.groupby('workingday_label')[cnt_col].mean().reset_index()
     workingday_df.rename(columns={cnt_col: 'avg_rentals'}, inplace=True)
     return workingday_df
-# Memproses data menggunakan helper function di atas
+
+# 2. Load data setelah fungsi siap
+df = pd.read_csv('Dashboard/main_df.csv')
+
+# 3. Proses data menggunakan fungsi
 season_rentals = create_season_rentals_df(df)
 workingday_rentals = create_workingday_rentals_df(df)
 
