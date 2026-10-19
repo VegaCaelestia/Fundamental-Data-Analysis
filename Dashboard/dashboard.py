@@ -54,7 +54,7 @@ if df is not None:
     
     with col_a:
         st.subheader("1. Pengaruh Musim terhadap Penyewaan")
-        st.write("**Kesimpulan:** Musim gugur (Fall) memiliki rata-rata jumlah peminjaman sepeda harian paling tinggi sepanjang tahun 2011–2012.")
+        st.write("Musim gugur (Fall) memiliki rata-rata jumlah peminjaman sepeda harian paling tinggi sepanjang tahun 2011–2012.")
         
         fig, ax = plt.subplots(figsize=(8, 6))
         season_df = daily_df.groupby('season_x')['cnt_y'].mean().reset_index()
@@ -76,7 +76,7 @@ if df is not None:
 
     with col_b:
         st.subheader("2. Perbandingan Hari Kerja vs Akhir Pekan")
-        st.write("**Kesimpulan:** Rata-rata peminjaman sepeda harian lebih tinggi pada hari kerja selama tahun 2011–2012.")
+        st.write("Rata-rata peminjaman sepeda harian lebih tinggi pada hari kerja selama tahun 2011–2012.")
         
         fig, ax = plt.subplots(figsize=(8, 6))
         workingday_df = daily_df.groupby('workingday_x')['cnt_y'].mean().reset_index()
