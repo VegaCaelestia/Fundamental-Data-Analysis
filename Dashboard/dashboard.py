@@ -43,7 +43,7 @@ if df is not None:
 
     st.markdown("---")
 
-    st.header("📌 Hasil Analisis & Kesimpulan")
+    st.header("Hasil Analisis & Kesimpulan")
 
     col_a, col_b = st.columns(2)
     
