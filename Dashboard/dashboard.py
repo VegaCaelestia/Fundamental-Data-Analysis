@@ -18,7 +18,7 @@
 # @st.cache_data
 # def load_data():
 #     # Membaca data dari file yang tersedia
-#     df = pd.read_csv('/content/main_df.csv')
+#     df = pd.read_csv('main_df.csv')
 #     df['dteday'] = pd.to_datetime(df['dteday'])
 #     return df
 # 
