@@ -13,7 +13,7 @@ st.markdown("Dashboard interaktif sederhana untuk menyajikan hasil analisis data
 # Load Data
 @st.cache_data
 def load_data():
-    df = pd.read_csv('hour_day.csv')
+    df = pd.read_csv('main_df.csv')
     df['dteday'] = pd.to_datetime(df['dteday'])
     
     # Membuat kolom 'season' otomatis jika belum ada
