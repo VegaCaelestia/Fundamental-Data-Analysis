@@ -21,7 +21,7 @@ pip install -r requirements.txt
 
 Run streamlit app
 ```
-streamlit run Dashboard/Dashboard.py
+streamlit run Dashboard/dashboard.py
 ```
 
 Note: sangat diperlukan data requirements.txt dengan penulisan yang baik agar dashboard streamlit ter-load secara sempurna tanpa error
