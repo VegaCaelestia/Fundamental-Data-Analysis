@@ -1,9 +1,9 @@
-%%writefile app.py
-
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
+
+%%writefile app.py
 
 df = pd.read_csv('main_df.csv')
 
