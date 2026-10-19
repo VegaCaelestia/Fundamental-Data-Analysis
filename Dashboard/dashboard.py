@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 
-df = pd.read_csv('main_df.csv')
+df = pd.read_csv('Dashboard/main_df.csv')
 
 # Menentukan fungsi helper yang adaptif dengan nama kolom yang ada di dataset
 def get_column_name(df, options):
