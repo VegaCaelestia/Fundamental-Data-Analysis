@@ -20,8 +20,7 @@ def load_data():
     year_filter = st.sidebar.multiselect(
         "Pilih Tahun:",
         options=df['dteday'].dt.year.unique(),
-        default=df['dteday'].dt.year.unique()
-    
+        default=df['dteday'].dt.year.unique())
     filtered_df = df[df['dteday'].dt.year.isin(year_filter)]
     
     daily_df = filtered_df.drop_duplicates(subset=['dteday'])
