@@ -3,8 +3,14 @@ Project ini merupakan bagian dari project saya untuk memenuhi tugas akhir Dicodi
 1. Musim apa yang memiliki rata-rata jumlah peminjaman sepeda harian (cnt) paling tinggi sepanjang tahun 2011–2012?
 2. Apakah rata-rata peminjaman sepeda harian (cnt) lebih tinggi pada hari kerja (workingday = 1) atau di hari libur/akhir pekan (workingday = 0) selama tahun 2011–2012?
 
-Untuk run streamlit dapat menggunakan ini:
+Setup Environment - Anaconda
 
-streamlit run dashboard.py
+
+Setup Environment - Shell/Terminal
+
+
+Run streamlit app
+
+streamlit run Dashboard/Dashboard.py
 
 Note: sangat diperlukan data requirements.txt dengan penulisan yang baik agar dashboard streamlit ter-load secara sempurna tanpa error
