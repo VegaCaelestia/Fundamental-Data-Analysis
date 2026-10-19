@@ -4,21 +4,21 @@ Project ini merupakan bagian dari project saya untuk memenuhi tugas akhir Dicodi
 2. Apakah rata-rata peminjaman sepeda harian (cnt) lebih tinggi pada hari kerja (workingday = 1) atau di hari libur/akhir pekan (workingday = 0) selama tahun 2011–2012?
 
 Setup Environment - Anaconda
-
+"""
 conda create --name main-ds python=3.9
 conda activate main-ds
-pip install -r requirements.txt
+pip install -r requirements.txt """
 
 Setup Environment - Shell/Terminal
-
+"""
 mkdir proyek_analisis_data
 cd proyek_analisis_data
 pipenv install
 pipenv shell
-pip install -r requirements.txt
+pip install -r requirements.txt """
 
 Run streamlit app
-
-streamlit run Dashboard/Dashboard.py
+"""
+streamlit run Dashboard/Dashboard.py """
 
 Note: sangat diperlukan data requirements.txt dengan penulisan yang baik agar dashboard streamlit ter-load secara sempurna tanpa error
