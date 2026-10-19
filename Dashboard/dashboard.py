@@ -3,14 +3,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Set page config
 st.set_page_config(page_title="Bike Sharing Dashboard", layout="wide")
 
-# Title
-st.title("📊 Dashboard Analisis Penyewaan Sepeda")
+
+st.title("Dashboard Analisis Penyewaan Sepeda")
 st.markdown("Dashboard interaktif sederhana untuk menyajikan hasil analisis data penyewaan sepeda.")
 
-# Load Data
+
 @st.cache_data
 def load_data():
     df = pd.read_csv('Dashboard/main_df.csv')
@@ -24,7 +23,7 @@ except Exception as e:
     df = None
 
 if df is not None:
-    # Sidebar filter
+
     st.sidebar.header("Filter Data")
     year_filter = st.sidebar.multiselect(
         "Pilih Tahun:",
@@ -32,13 +31,10 @@ if df is not None:
         default=df['dteday'].dt.year.unique()
     )
     
-    # Filter data berdasarkan tahun
     filtered_df = df[df['dteday'].dt.year.isin(year_filter)]
     
-    # Karena dataset berlevel per-jam, kita ambil unique per hari untuk metrik harian (cnt_y)
     daily_df = filtered_df.drop_duplicates(subset=['dteday'])
 
-    # Menampilkan metrik sederhana
     col1, col2 = st.columns(2)
     with col1:
         st.metric("Total Hari Data", len(daily_df))
@@ -47,7 +43,6 @@ if df is not None:
 
     st.markdown("---")
 
-    # Pertanyaan 1 & 2
     st.header("📌 Hasil Analisis & Kesimpulan")
 
     col_a, col_b = st.columns(2)
