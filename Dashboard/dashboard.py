@@ -23,6 +23,7 @@ def load_data():
         default=df['dteday'].dt.year.unique(),
     filtered_df = df[df['dteday'].dt.year.isin(year_filter)]
     )
+    
     daily_df = filtered_df.drop_duplicates(subset=['dteday'])
     
     col1, col2 = st.columns(2)
