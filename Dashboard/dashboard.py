@@ -67,4 +67,4 @@ with col_b:
     ax.set_xlabel("Kategori Hari", fontsize=12)
     ax.set_ylabel("Rata-rata Penyewaan", fontsize=12)
     st.pyplot(fig)
-     st.write("Dari grafik di atas, dapat diketahui bahwa rata-rata peminjaman sepeda harian lebih tinggi pada hari kerja (workingday = 1) dibandingkan dengan hari libur/akhir pekan (workingday = 0) selama tahun 2011–2012.")
+    st.write("Dari grafik di atas, dapat diketahui bahwa rata-rata peminjaman sepeda harian lebih tinggi pada hari kerja (workingday = 1) dibandingkan dengan hari libur/akhir pekan (workingday = 0) selama tahun 2011–2012.")
