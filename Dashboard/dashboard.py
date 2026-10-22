@@ -3,7 +3,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-main_df = pd.read_csv('main_df.csv')
+try:
+    main_df = pd.read_csv('main_df.csv')
+
+except FileNotFoundError:
+    main_df = pd.read_csv('Dashboard/main_df.csv')
 
 main_df['dteday'] = pd.to_datetime(main_df['dteday'])
 
